@@ -18,6 +18,7 @@ fun main() {
     println(x.execute())
     printSeparationLine()
 
+
     val getHighestSalaryAverageCitiesNamesInteractor= GetHighestSalaryAverageCitiesNamesInteractor(dataSource)
     println(getHighestSalaryAverageCitiesNamesInteractor.execute(4))
 }

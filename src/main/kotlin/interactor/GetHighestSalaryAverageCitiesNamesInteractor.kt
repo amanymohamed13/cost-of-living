@@ -24,7 +24,7 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
 
     private fun checkAffordability(city: CityEntity): Boolean {
         val totalExpenses = calculateTotalExpenses(city)
-        val remainingBudget = city.averageMonthlyNetSalaryAfterTax!! - totalExpenses
+        val remainingBudget = (city.averageMonthlyNetSalaryAfterTax!! *2 )- totalExpenses
 
         // Consider only cities where the remaining budget is positive
         return remainingBudget > 0
@@ -49,7 +49,7 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
 
     private fun calculateOtherExpenses(servicesPrices: ServicesPrices): Float {
         // Consider only the limit of $250 for other expenses
-        val limit = 250f
+        val limit = 250.0f
 
         val totalOtherExpenses = listOf(
             servicesPrices.basicElectricityHeatingCoolingWaterGarbageFor85m2Apartment ?: 0f,
@@ -62,6 +62,14 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
             servicesPrices.internationalPrimarySchoolYearlyForOneChild ?: 0f
         ).sum()
 
-        return if (totalOtherExpenses >= limit) totalOtherExpenses else Float.MAX_VALUE
+        return if (totalOtherExpenses <= limit) totalOtherExpenses else Float.MAX_VALUE
     }
+
+    private fun calculateOtherExpenses(): Float {
+        // Consider only the limit of $250 for other expenses
+        val limit = 250.0f
+
+        return limit
+    }
+
 }
