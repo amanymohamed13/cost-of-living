@@ -5,17 +5,17 @@ import java.util.*
 
 class SearchForSalary(
     private val dataSource: CostOfLivingDataSource,
-   private var Name:String
-){
-    init {
-        this.Name=correctTheCountryName(Name)
-    }
-    fun execute(limit:Int): List<List<Any>> {
-//      val Name = correctTheCountryName(countryName)
+
+    )
+{
+
+    var country_after:String=" "
+    fun execute(country:String): List<List<Any>> {
+     country_after = correctTheCountryName(countryName = country)
         return listOf(dataSource
             .getAllCitiesData()
             .filter (::excludeNullSalariesAndLowQualityData)
-            .filter (::excludeOtherCountries )
+           .filter (::excludeOtherCountries )
             .map {
                 Pair(it.cityName,it.averageMonthlyNetSalaryAfterTax).toList()
             })
@@ -31,21 +31,23 @@ class SearchForSalary(
         return city.averageMonthlyNetSalaryAfterTax != null && city.dataQuality
     }
     private fun excludeOtherCountries(city: CityEntity): Boolean {
-        return city.country == Name
+        return city.country == country_after
     }
 
     private fun correctTheCountryName(countryName: String):String{
+
+       return countryName[0].uppercaseChar()+""+countryName.slice(1 until (countryName.length-1)).lowercase()
 //        for (i in countryName.indices-1){
 //            if (i == 0)
 //            {
-//                if (countryName[i]>='a' && countryName[i] <= 'z'){
+//
 //                    countryName[i].uppercaseChar()
-//                }
+//
 //            }
 //            else{
-//                if (countryName[i]>='A' && countryName[i] <= 'Z'){
+//
 //                    countryName.lowercase()
-//                }
+//
 //            }
 //        }
 //        return countryName
