@@ -13,6 +13,17 @@ repositories {
 }
 
 dependencies {
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    implementation("org.webjars.npm:before:0.0.1")
+    implementation("org.webjars.npm:before:0.0.1")
+    implementation("org.webjars.npm:before:0.0.1")
+    implementation("org.webjars.npm:before-after-hook:2.2.3")
+    implementation("org.webjars.npm:before-after-hook:2.2.3")
+    implementation("com.github.bigwheel:scalatest-structured-before_2.12:1.0.1")
+    implementation("com.github.bigwheel:scalatest-structured-before_2.12:1.0.1")
+    implementation("com.github.bigwheel:scalatest-structured-before_2.12:1.0.1")
+    implementation("io.opencaesar.ecore:ecore-bikeshed-gradle:0.9.0")
+    implementation("it.krzeminski.vis-assert:vis-assert:0.4.1-beta")
     testImplementation(kotlin("test"))
 }
 
