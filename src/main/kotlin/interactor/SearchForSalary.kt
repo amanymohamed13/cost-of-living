@@ -10,13 +10,16 @@ class SearchForSalary(
     init {
         this.Name=correctTheCountryName(Name)
     }
-    fun execute(limit:Int):List<Float> {
+    fun execute(limit:Int): List<List<Any>> {
 //      val Name = correctTheCountryName(countryName)
-        return dataSource
+        return listOf(dataSource
             .getAllCitiesData()
             .filter (::excludeNullSalariesAndLowQualityData)
             .filter (::excludeOtherCountries )
-            .map { it.averageMonthlyNetSalaryAfterTax!! }
+            .map {
+                Pair(it.cityName,it.averageMonthlyNetSalaryAfterTax).toList()
+            })
+
 
 
 
