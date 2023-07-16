@@ -36,7 +36,7 @@ class GetLowestCostAverageFruitsAndVegetablesCitiesInteractor(
         val avgSalary = city.averageMonthlyNetSalaryAfterTax ?: 0f
 
         return if (avgSalary > 0.0) {
-            avgFruitAndVegetablesCost / avgSalary
+            avgSalary / avgFruitAndVegetablesCost
         } else {
             Float.MAX_VALUE
         }

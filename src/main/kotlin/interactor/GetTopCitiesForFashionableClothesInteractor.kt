@@ -2,7 +2,7 @@ package interactor
 
 import model.CityEntity
 
-class FindTopCitiesForFashionableClothesInteractor(private val dataSource: CostOfLivingDataSource ) {
+class GetTopCitiesForFashionableClothesInteractor(private val dataSource: CostOfLivingDataSource ) {
     fun execute(limit: Int): List<String> {
         return dataSource
             .getAllCitiesData()
@@ -30,22 +30,20 @@ class FindTopCitiesForFashionableClothesInteractor(private val dataSource: CostO
                 totalPrice += onePairOfJeansLevis50oneOrSimilar
             }
         }
-        var result:Float=totalPrice / getNumberOfBrand(cityEntity)
-        return result
+
+        return totalPrice
     }
 
-    private fun getNumberOfBrand(cityEntity: CityEntity): Int {
+
+    private fun isCityContainsAtLeastNonNullBrand(cityEntity: CityEntity): Boolean {
         var totalBrand = 0
         cityEntity.clothesPrices.run {
             onePairOfMenLeatherBusinessShoes?.let { totalBrand++ }
             oneSummerDressInAChainStoreZaraHAndM?.let { totalBrand++ }
             onePairOfNikeRunningShoesMidRange?.let { totalBrand++ }
             onePairOfJeansLevis50oneOrSimilar?.let { totalBrand++ }
-            return totalBrand
+
         }
+    return    totalBrand > 0
     }
-
-    private fun isCityContainsAtLeastNonNullBrand(city: CityEntity) =
-        getNumberOfBrand(city) > 0
-
 }
