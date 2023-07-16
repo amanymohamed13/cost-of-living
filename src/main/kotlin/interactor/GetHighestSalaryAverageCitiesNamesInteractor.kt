@@ -3,6 +3,7 @@ package interactor
 import model.CityEntity
 import model.FoodPrices
 import model.ServicesPrices
+import kotlin.math.abs
 
 class GetHighestSalaryAverageCitiesNamesInteractor (
     private val dataSource: CostOfLivingDataSource
@@ -62,14 +63,14 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
             servicesPrices.internationalPrimarySchoolYearlyForOneChild ?: 0f
         ).sum()
 
-        return if (totalOtherExpenses <= limit) totalOtherExpenses else Float.MAX_VALUE
+        return abs (limit- totalOtherExpenses)
     }
 
-    private fun calculateOtherExpenses(): Float {
-        // Consider only the limit of $250 for other expenses
-        val limit = 250.0f
-
-        return limit
-    }
+//    private fun calculateOtherExpenses(): Float {
+//        // Consider only the limit of $250 for other expenses
+//        val limit = 250.0f
+//
+//        return limit
+//    }
 
 }

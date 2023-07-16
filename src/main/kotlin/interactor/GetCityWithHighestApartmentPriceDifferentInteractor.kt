@@ -3,7 +3,7 @@ package interactor
 import model.CityEntity
 import kotlin.math.abs
 
-class FindCityWithHighestApartmentPriceDifferentInteractor(
+class GetCityWithHighestApartmentPriceDifferentInteractor(
     private val dataSource: CostOfLivingDataSource
 ) {
 
