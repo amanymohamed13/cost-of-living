@@ -7,10 +7,8 @@ class GetAvarageSalaryForEachCityInCountry(
     private val dataSource: CostOfLivingDataSource,
 
     ) {
-
-    var country_after: String = " "
     fun execute(country: String): List<Pair<String, Float>> {
-        country_after = correctTheCountryName(countryName = country)
+
         return dataSource
             .getAllCitiesData().filter { excludeNullSalariesAndLowQualityData(it) && it.country.equals(country, true) }
             .map {
@@ -23,12 +21,7 @@ class GetAvarageSalaryForEachCityInCountry(
         return city.averageMonthlyNetSalaryAfterTax != null && city.dataQuality
     }
 
-    private fun correctTheCountryName(countryName: String): String {
 
-        return countryName[0].uppercaseChar() + "" + countryName.slice(1 until (countryName.length - 1)).lowercase()
-
-
-    }
 }
 //
 //}

@@ -12,7 +12,7 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
 
     fun execute(limit: Int): List<String> {
         return dataSource.getAllCitiesData()
-            .filter(::excludeNullSalariesAndLowQualityData)
+            .filter(::excludeNullSalariesAndLowQualityData  )
             .filter(::checkAffordability)
             .sortedByDescending { it.averageMonthlyNetSalaryAfterTax }
             .take(limit)
@@ -66,11 +66,5 @@ class GetHighestSalaryAverageCitiesNamesInteractor (
         return abs (limit- totalOtherExpenses)
     }
 
-//    private fun calculateOtherExpenses(): Float {
-//        // Consider only the limit of $250 for other expenses
-//        val limit = 250.0f
-//
-//        return limit
-//    }
 
 }

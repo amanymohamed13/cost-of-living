@@ -18,11 +18,10 @@ class GetCityHasCheapestInternetConnectionInteractor(
     }
 
     private fun excludeNullSalariesAndLowQualityData(city: CityEntity): Boolean {
-        return city.averageMonthlyNetSalaryAfterTax != null && city.dataQuality
+        return city.averageMonthlyNetSalaryAfterTax != null && city.dataQuality && city.servicesPrices.internet60MbpsOrMoreUnlimitedDataCableAdsl!=null
     }
-    private fun getAverageInternetConnection(cityEntity:CityEntity):Float {
-        var result:Float = cityEntity.servicesPrices.internet60MbpsOrMoreUnlimitedDataCableAdsl!! / cityEntity.averageMonthlyNetSalaryAfterTax!!
-        return result
-    }
+    private fun getAverageInternetConnection(cityEntity:CityEntity)= cityEntity.servicesPrices.internet60MbpsOrMoreUnlimitedDataCableAdsl!! / cityEntity.averageMonthlyNetSalaryAfterTax!!
+
+
 
 }

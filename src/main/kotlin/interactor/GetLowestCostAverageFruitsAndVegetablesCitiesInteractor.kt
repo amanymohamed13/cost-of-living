@@ -1,6 +1,7 @@
 package interactor
 
 import model.CityEntity
+import kotlin.math.abs
 
 
 class GetLowestCostAverageFruitsAndVegetablesCitiesInteractor(
@@ -31,15 +32,23 @@ class GetLowestCostAverageFruitsAndVegetablesCitiesInteractor(
                 (fruitAndVegetablesPrices.onion1kg ?: 0f) +
                 (fruitAndVegetablesPrices.lettuceOneHead ?: 0f)
 
-        val avgFruitAndVegetablesCost = sumOfPrices / 7
+        val avgFruitAndVegetablesCost = sumOfPrices / Count
 
+        return Avarage(city, avgFruitAndVegetablesCost)
+    }
+
+    private fun Avarage(city: CityEntity, avgFruitAndVegetablesCost: Float): Float {
         val avgSalary = city.averageMonthlyNetSalaryAfterTax ?: 0f
 
         return if (avgSalary > 0.0) {
             avgSalary / avgFruitAndVegetablesCost
         } else {
-            Float.MAX_VALUE
+            return abs(avgSalary / avgFruitAndVegetablesCost)
         }
+    }
+
+    companion object NumOfFruitsAndVegetables{
+       const val Count=7
     }
 }
 

@@ -36,14 +36,9 @@ class GetTopCitiesForFashionableClothesInteractor(private val dataSource: CostOf
 
 
     private fun isCityContainsAtLeastNonNullBrand(cityEntity: CityEntity): Boolean {
-        var totalBrand = 0
-        cityEntity.clothesPrices.run {
-            onePairOfMenLeatherBusinessShoes?.let { totalBrand++ }
-            oneSummerDressInAChainStoreZaraHAndM?.let { totalBrand++ }
-            onePairOfNikeRunningShoesMidRange?.let { totalBrand++ }
-            onePairOfJeansLevis50oneOrSimilar?.let { totalBrand++ }
-
-        }
-    return    totalBrand > 0
+    return     (cityEntity.clothesPrices.onePairOfMenLeatherBusinessShoes!=null ||
+            cityEntity.clothesPrices.oneSummerDressInAChainStoreZaraHAndM!=null ||
+            cityEntity.clothesPrices.onePairOfNikeRunningShoesMidRange!=null ||
+            cityEntity.clothesPrices.onePairOfJeansLevis50oneOrSimilar!=null )
     }
 }

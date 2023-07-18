@@ -1,6 +1,6 @@
 package interactor
 import model.CityEntity
-
+import kotlin.math.abs
 
 
 class GetCitiesHasCheapestBananaPricesInteractor(
@@ -10,7 +10,7 @@ private val dataSource: CostOfLivingDataSource,
     fun execute(limit: Int): List<String> {
         return dataSource
             .getAllCitiesData()
-            .filter(::excludeNullPricesAndLowQualityData)
+            .filter(::excludeNullPricesAndLowQualityData )
             .sortedBy (::getBananaPrices )
             .take(limit)
             .map { it.cityName }
@@ -20,10 +20,10 @@ private val dataSource: CostOfLivingDataSource,
     }
     private fun getBananaPrices(city:CityEntity): Float
     {
-        val BananaPrice= city.fruitAndVegetablesPrices.banana1kg
+        val BananaPrice: Float? = city.fruitAndVegetablesPrices.banana1kg
         return if (BananaPrice!!> 0.0F)
               BananaPrice
         else
-            return Float.MAX_VALUE
+            return abs(BananaPrice)
     }
 }
